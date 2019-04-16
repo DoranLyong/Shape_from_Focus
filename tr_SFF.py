@@ -6,8 +6,6 @@ code author : DoranLyong
 email : cheeryun@gmail.com 
 """
 
-
-
 import numpy as np 
 import scipy.io as sio     # Load MATLAB files 
 from scipy import ndimage, misc
@@ -39,11 +37,10 @@ def ML(img):
             ml[i,j] =  abs(2*img[i,j] - img[i-1,j] - img[i+1, j]) + abs(2*img[i,j] - img[i, j-1] - img[i,j+1])   
            
     return ml
-
+    
 def SML(ML):
     row, col = ML.shape 
     SML = np.zeros((row, col), dtype=float )
-
 
     for i in range(4, row-3,1 ):
         for j in range(4, col-3, 1):
@@ -55,7 +52,6 @@ def SML(ML):
 
 
 def meshgrid(mesh):
-
     x, y = mesh.shape 
 
     x = np.linspace(0, x, x)
@@ -75,7 +71,7 @@ def main():
     row, col, h = img_stack.shape 
     
     #imshow(img_stack)
-    #focus_stack = SML(ML(img_stack))
+  
     focus_stack = np.zeros((row, col,h), dtype=float )
     for k in range(h):
         #focus_stack[:,:,k] = cv2.Laplacian(img_stack[:,:,k],cv2.CV_64F) 
@@ -90,11 +86,9 @@ def main():
     #print(focus_stack.shape)
 
     meshgrid(shape)
-
     
     print("Done!")
     print(shape)
-
 
 
 if __name__ == "__main__":
